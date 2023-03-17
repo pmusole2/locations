@@ -7,8 +7,10 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtGuard } from 'src/auth/guards/Auth.Guard';
 import { WardDto, WardObj } from '../interfaces/ward';
 import { WardService } from '../services/ward';
 
@@ -166,6 +168,7 @@ export class WardController {
     return this._wardService.getWardByProvinceName(name);
   }
 
+  @UseGuards(JwtGuard)
   @Post()
   @ApiBody({ type: WardDto })
   @ApiResponse({
@@ -177,6 +180,7 @@ export class WardController {
     return this._wardService.createWard(ward);
   }
 
+  @UseGuards(JwtGuard)
   @Post('bulk')
   @ApiBody({ type: [WardDto] })
   @ApiResponse({
@@ -189,6 +193,7 @@ export class WardController {
     return this._wardService.createBulkWard(wards);
   }
 
+  @UseGuards(JwtGuard)
   @Put(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiBody({ type: WardObj })
@@ -204,6 +209,7 @@ export class WardController {
     return this._wardService.updateWard(id, ward);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiResponse({

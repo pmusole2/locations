@@ -7,8 +7,10 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtGuard } from 'src/auth/guards/Auth.Guard';
 import { DistrictDto, DistrictObj } from '../interfaces/district';
 import { DistrictService } from '../services/district';
 
@@ -107,6 +109,7 @@ export class DistrictController {
     return this._districtService.getDistrictByProvinceIdAndName(id, name);
   }
 
+  @UseGuards(JwtGuard)
   @Post()
   @ApiBody({ type: DistrictDto })
   @ApiResponse({
@@ -118,6 +121,7 @@ export class DistrictController {
     return this._districtService.createDistrict(district);
   }
 
+  @UseGuards(JwtGuard)
   @Post('bulk')
   @ApiBody({ type: DistrictDto, isArray: true })
   @ApiResponse({
@@ -130,6 +134,7 @@ export class DistrictController {
     return this._districtService.createBulkDistricts(districts);
   }
 
+  @UseGuards(JwtGuard)
   @Put(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiBody({ type: DistrictObj })
@@ -145,6 +150,7 @@ export class DistrictController {
     return this._districtService.updateDistrict(id, district);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiResponse({

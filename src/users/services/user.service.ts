@@ -7,7 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import argon from 'argon2';
+import * as argon from 'argon2';
 import { User } from '../models/user.entity';
 import { UserDto } from '../interfaces/user.interface';
 
@@ -27,9 +27,6 @@ export class UserService {
         .createQueryBuilder('user')
         .select('user')
         .addSelect('user.password')
-        .leftJoinAndSelect('user.payer', 'payer')
-        .leftJoinAndSelect('user.insuranceCompany', 'insuranceCompany')
-        .leftJoinAndSelect('user.members', 'members')
         .where('user.email = :email', { email })
         .getOne();
 
@@ -47,9 +44,6 @@ export class UserService {
       const user = await this._userRepo
         .createQueryBuilder('user')
         .select('user')
-        .leftJoinAndSelect('user.payer', 'payer')
-        .leftJoinAndSelect('user.insuranceCompany', 'insuranceCompany')
-        .leftJoinAndSelect('user.members', 'members')
         .where('user.email = :email', { email })
         .getOne();
 
@@ -67,9 +61,6 @@ export class UserService {
       const users = await this._userRepo
         .createQueryBuilder('user')
         .select('user')
-        .leftJoinAndSelect('user.payer', 'payer')
-        .leftJoinAndSelect('user.insuranceCompany', 'insuranceCompany')
-        .leftJoinAndSelect('user.members', 'members')
         .getMany();
 
       return users;
@@ -84,9 +75,6 @@ export class UserService {
       const user = await this._userRepo
         .createQueryBuilder('user')
         .select('user')
-        .leftJoinAndSelect('user.payer', 'payer')
-        .leftJoinAndSelect('user.insuranceCompany', 'insuranceCompany')
-        .leftJoinAndSelect('user.members', 'members')
         .where('user.id = :id', { id })
         .getOne();
 
@@ -108,7 +96,14 @@ export class UserService {
           `User with email ${val.email} already exists`,
         );
 
-      const user = await this._userRepo.create(val).save();
+      const password = await argon.hash(val.password);
+
+      const user = await this._userRepo
+        .create({
+          ...val,
+          password,
+        })
+        .save();
 
       // TODO: Send email to user
 
@@ -130,11 +125,11 @@ export class UserService {
 
       val.password = await argon.hash(val.password);
 
-      const user = await this._userRepo.create({
-        ...val,
-      });
-
-      await user.save();
+      const user = await this._userRepo
+        .create({
+          ...val,
+        })
+        .save();
 
       // TODO: Send email to user
 

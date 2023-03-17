@@ -7,8 +7,10 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtGuard } from 'src/auth/guards/Auth.Guard';
 import { ProvinceDto, ProvinceObj } from '../interfaces/province';
 import { ProvinceService } from '../services/province';
 
@@ -111,6 +113,7 @@ export class ProvinceController {
     return this._provinceService.getProvinceByWardName(name);
   }
 
+  @UseGuards(JwtGuard)
   @Post()
   @ApiBody({
     type: ProvinceDto,
@@ -128,6 +131,7 @@ export class ProvinceController {
     return this._provinceService.createProvince(province);
   }
 
+  @UseGuards(JwtGuard)
   @Post('bulk')
   @ApiBody({
     type: ProvinceDto,
@@ -147,6 +151,7 @@ export class ProvinceController {
     return this._provinceService.createBulkProvinces(provinces);
   }
 
+  @UseGuards(JwtGuard)
   @Put(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiBody({
@@ -172,6 +177,7 @@ export class ProvinceController {
     return this._provinceService.updateProvince(id, province);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiResponse({

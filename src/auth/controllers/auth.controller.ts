@@ -1,4 +1,5 @@
 import {
+  Body,
   ClassSerializerInterceptor,
   Controller,
   Get,
@@ -37,7 +38,7 @@ export class AuthController {
     status: 401,
     description: 'Invalid credentials',
   })
-  async loginUser(val: LoginDTO): Promise<AuthPayload> {
+  async loginUser(@Body() val: LoginDTO): Promise<AuthPayload> {
     return await this.authService.loginUser(val);
   }
 

@@ -7,8 +7,10 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtGuard } from 'src/auth/guards/Auth.Guard';
 import { ConstituencyDto, ConstituencyObj } from '../interfaces/constituency';
 import { ConstituencyService } from '../services/constituency';
 
@@ -117,6 +119,7 @@ export class ConstituencyController {
     return this._constituencyService.getConstituencyByProvinceName(name);
   }
 
+  @UseGuards(JwtGuard)
   @Post()
   @ApiBody({ type: ConstituencyDto })
   @ApiResponse({
@@ -130,6 +133,7 @@ export class ConstituencyController {
     return this._constituencyService.createConstituency(constituency);
   }
 
+  @UseGuards(JwtGuard)
   @Post('bulk')
   @ApiBody({ type: [ConstituencyDto] })
   @ApiResponse({
@@ -142,6 +146,7 @@ export class ConstituencyController {
     return this._constituencyService.createBulkConstituency(constituencies);
   }
 
+  @UseGuards(JwtGuard)
   @Put(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiBody({ type: ConstituencyObj })
@@ -157,6 +162,7 @@ export class ConstituencyController {
     return this._constituencyService.updateConstituency(id, constituency);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   @ApiParam({ name: 'id', type: 'number' })
   @ApiResponse({
