@@ -22,8 +22,8 @@ export class ProvinceService {
     return this._provinceRepo
       .createQueryBuilder('province')
       .leftJoinAndSelect('province.districts', 'district')
-      .leftJoinAndSelect('district.constituencies', 'constituency')
-      .leftJoinAndSelect('constituency.wards', 'wards')
+      .leftJoinAndSelect('district.constituencies', 'constituencies')
+      .leftJoinAndSelect('constituencies.wards', 'wards')
       .getMany();
   }
 
@@ -32,8 +32,8 @@ export class ProvinceService {
       const province = await this._provinceRepo
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'wards')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('province.id = :id', { id })
         .getOne();
 
@@ -52,8 +52,8 @@ export class ProvinceService {
       const province = await this._provinceRepo
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'wards')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('province.provinceName = :name', { name })
         .getOne();
 
@@ -72,8 +72,8 @@ export class ProvinceService {
       const province = await this._provinceRepo
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'wards')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('district.districtName = :name', { name })
         .getOne();
 
@@ -94,14 +94,14 @@ export class ProvinceService {
       const province = await this._provinceRepo
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'wards')
-        .where('constituency.constituencyName = :name', { name })
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituencies.wards', 'wards')
+        .where('constituencies.constituencyName = :name', { name })
         .getOne();
 
       if (!province)
         throw new NotFoundException(
-          `Province with constituency name ${name} not found`,
+          `Province with constituencies name ${name} not found`,
         );
 
       return province;
@@ -116,8 +116,8 @@ export class ProvinceService {
       const province = await this._provinceRepo
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'wards')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('wards.wardName = :name', { name })
         .getOne();
 
