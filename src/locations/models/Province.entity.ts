@@ -13,6 +13,6 @@ export class Province extends AbstractClass implements ProvinceObj {
   })
   provinceName: string;
 
-  @OneToMany(() => District, (province) => province.province)
+  @OneToMany(() => District, (district) => district.province)
   districts: District[];
 }

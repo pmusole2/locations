@@ -141,7 +141,14 @@ export class DistrictService {
           `District with name ${data.districtName} already exists`,
         );
 
-      const newDistrict = await this._districtRepo.create(data).save();
+      console.log(data);
+
+      const newDistrict = await this._districtRepo
+        .create({
+          ...data,
+          province: data.province,
+        })
+        .save();
 
       return this.getDistrictById(newDistrict.id);
     } catch (error) {
