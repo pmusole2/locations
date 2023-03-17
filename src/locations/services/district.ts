@@ -22,8 +22,8 @@ export class DistrictService {
     return this._districtRepo
       .createQueryBuilder('district')
       .leftJoinAndSelect('district.province', 'province')
-      .leftJoinAndSelect('district.constituencies', 'constituency')
-      .leftJoinAndSelect('constituency.wards', 'ward')
+      .leftJoinAndSelect('district.constituencies', 'constituencies')
+      .leftJoinAndSelect('constituency.wards', 'wards')
       .getMany();
   }
 
@@ -32,8 +32,8 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.id = :id', { id })
         .getOne();
 
@@ -52,8 +52,8 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.districtName = :name', { name })
         .getOne();
 
@@ -72,8 +72,8 @@ export class DistrictService {
       return await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.provinceId = :id', { id })
         .getMany();
     } catch (error) {
@@ -87,9 +87,9 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
-        .where('district.provinceName LIKE :name', { name: `%${name}%` })
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituency.wards', 'wards')
+        .where('province.provinceName LIKE :name', { name: `%${name}%` })
         .getMany();
 
       if (!district)
@@ -110,9 +110,9 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
-        .where('district.provinceId = :id', { id })
+        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('constituency.wards', 'wards')
+        .where('district.province.id = :id', { id })
         .andWhere('district.districtName = :name', { name })
         .getOne();
 
@@ -133,7 +133,7 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .where('district.districtName = :name', { name: data.districtName })
-        .andWhere('district.provinceId = :id', { id: data.province.id })
+        .andWhere('district.province.id = :id', { id: data.province.id })
         .getOne();
 
       if (district)

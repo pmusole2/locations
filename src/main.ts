@@ -31,6 +31,11 @@ async function bootstrap() {
     .setDescription(
       'API list for the locations in Zambia, (Provinces, Districts, Constituencies and Wards)',
     )
+    .setContact(
+      'Prince Musole',
+      'https://github.com/pmusole2',
+      'pmusole2@gmail.com',
+    )
     .setVersion('1.0')
     .addTag('Location Mgt API')
     .build();

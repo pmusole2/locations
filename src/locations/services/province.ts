@@ -23,7 +23,7 @@ export class ProvinceService {
       .createQueryBuilder('province')
       .leftJoinAndSelect('province.districts', 'district')
       .leftJoinAndSelect('district.constituencies', 'constituency')
-      .leftJoinAndSelect('constituency.wards', 'ward')
+      .leftJoinAndSelect('constituency.wards', 'wards')
       .getMany();
   }
 
@@ -33,7 +33,7 @@ export class ProvinceService {
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
         .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('province.id = :id', { id })
         .getOne();
 
@@ -53,7 +53,7 @@ export class ProvinceService {
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
         .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('province.provinceName = :name', { name })
         .getOne();
 
@@ -73,7 +73,7 @@ export class ProvinceService {
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
         .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.districtName = :name', { name })
         .getOne();
 
@@ -95,7 +95,7 @@ export class ProvinceService {
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
         .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
+        .leftJoinAndSelect('constituency.wards', 'wards')
         .where('constituency.constituencyName = :name', { name })
         .getOne();
 
@@ -117,8 +117,8 @@ export class ProvinceService {
         .createQueryBuilder('province')
         .leftJoinAndSelect('province.districts', 'district')
         .leftJoinAndSelect('district.constituencies', 'constituency')
-        .leftJoinAndSelect('constituency.wards', 'ward')
-        .where('ward.wardName = :name', { name })
+        .leftJoinAndSelect('constituency.wards', 'wards')
+        .where('wards.wardName = :name', { name })
         .getOne();
 
       if (!province)
