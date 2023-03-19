@@ -1,7 +1,6 @@
 import { AbstractClass } from 'src/common/metadata/common';
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { DistrictObj } from '../interfaces/district';
-import { Constituency } from './Constituency.entity';
 import { Province } from './Province.entity';
 
 @Entity('district')
@@ -15,7 +14,4 @@ export class District extends AbstractClass implements DistrictObj {
 
   @ManyToOne(() => Province, (province) => province.districts)
   province: Province;
-
-  @OneToMany(() => Constituency, (constituency) => constituency.district)
-  constituencies: Constituency[];
 }
