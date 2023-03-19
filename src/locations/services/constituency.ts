@@ -158,7 +158,7 @@ export class ConstituencyService {
 
       if (constituency)
         throw new BadRequestException(
-          `Constituency with name ${data.constituencyName} already exists in the district`,
+          `Constituency with name ${data.constituencyName} already exists in the province`,
         );
 
       const constituencyToCreate = await this._constituencyRepo

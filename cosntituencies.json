@@ -1,0 +1,178 @@
+[
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Bahati"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Bangweulu"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Chembe"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Chiengi"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Chifunabuli"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Chipili"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Kawambwa"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Luapula"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Mambilima"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Mansa Central"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Milenge"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Mwansabombwe"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Mwense"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Nchelenge"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Chiengi"
+  },
+  {
+    "province": {
+      "id": 2,
+      "isActive": true,
+      "createdAt": "2023-03-16T13:02:10.000Z",
+      "updatedAt": "2023-03-16T13:02:10.000Z",
+      "deletedAt": null,
+      "provinceName": "Luapula"
+    },
+    "constituencyName": "Pambashe"
+  }
+]
