@@ -20,8 +20,8 @@ export class ConstituencyService {
   async getConstituencies(): Promise<Constituency[]> {
     return this._constituencyRepo
       .createQueryBuilder('constituency')
-      .leftJoinAndSelect('constituency.district', 'district')
       .leftJoinAndSelect('district.province', 'province')
+      .leftJoinAndSelect('province.districts', 'districts')
       .leftJoinAndSelect('constituency.wards', 'wards')
       .getMany();
   }
@@ -30,8 +30,8 @@ export class ConstituencyService {
     try {
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('constituency.id = :id', { id })
         .getOne();
@@ -50,8 +50,8 @@ export class ConstituencyService {
     try {
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('constituency.constituencyName LIKE :name', {
           name: `%${name}%`,
@@ -72,8 +72,8 @@ export class ConstituencyService {
     try {
       return await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.id = :id', { id })
         .getMany();
@@ -87,8 +87,8 @@ export class ConstituencyService {
     try {
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('district.districtName LIKE :name', { name: `%${name}%` })
         .getMany();
@@ -109,8 +109,8 @@ export class ConstituencyService {
     try {
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('province.id = :id', { id })
         .getMany();
@@ -129,8 +129,8 @@ export class ConstituencyService {
     try {
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .leftJoinAndSelect('constituency.wards', 'wards')
         .where('province.provinceName LIKE :name', { name: `%${name}%` })
         .getMany();
@@ -150,11 +150,10 @@ export class ConstituencyService {
       // Check if constituency already exists in the district
       const constituency = await this._constituencyRepo
         .createQueryBuilder('constituency')
-        .leftJoinAndSelect('constituency.district', 'district')
         .where('constituency.constituencyName = :name', {
           name: data.constituencyName,
         })
-        .andWhere('district.id = :id', { id: data.district.id })
+        .andWhere('district.id = :id', { id: data.province.id })
         .getOne();
 
       if (constituency)

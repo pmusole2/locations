@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsObject, IsString } from 'class-validator';
 import { CommonMetadata } from 'src/common/metadata/common';
-import { DistrictObj } from './district';
+import { ProvinceObj } from './province';
 import { WardObj } from './ward';
 
 export class ConstituencyDto {
@@ -10,10 +10,10 @@ export class ConstituencyDto {
   @IsString()
   constituencyName: string;
 
-  @ApiProperty({ type: () => DistrictObj })
+  @ApiProperty({ type: () => ProvinceObj })
   @IsObject()
-  @Type(() => DistrictObj)
-  district: DistrictObj;
+  @Type(() => ProvinceObj)
+  province: ProvinceObj;
 }
 
 export class ConstituencyObj extends CommonMetadata {
@@ -21,10 +21,10 @@ export class ConstituencyObj extends CommonMetadata {
   @IsString()
   constituencyName: string;
 
-  @ApiProperty({ type: () => DistrictObj })
+  @ApiProperty({ type: () => ProvinceObj })
   @IsObject()
-  @Type(() => DistrictObj)
-  district: DistrictObj;
+  @Type(() => ProvinceObj)
+  province: ProvinceObj;
 
   @ApiProperty({ type: () => [WardObj] })
   @IsObject()

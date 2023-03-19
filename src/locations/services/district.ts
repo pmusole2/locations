@@ -52,7 +52,7 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('province.constituencies', 'constituencies')
         .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('district.districtName = :name', { name })
         .getOne();
@@ -72,7 +72,7 @@ export class DistrictService {
       return await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('province.constituencies', 'constituencies')
         .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('district.provinceId = :id', { id })
         .getMany();
@@ -87,7 +87,7 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('province.constituencies', 'constituencies')
         .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('province.provinceName LIKE :name', { name: `%${name}%` })
         .getMany();
@@ -110,7 +110,7 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('province.constituencies', 'constituencies')
         .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('district.province.id = :id', { id })
         .andWhere('district.districtName = :name', { name })

@@ -1,7 +1,7 @@
 import { AbstractClass } from 'src/common/metadata/common';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ConstituencyObj } from '../interfaces/constituency';
-import { District } from './District.entity';
+import { Province } from './Province.entity';
 import { Ward } from './Ward.entity';
 
 @Entity('constituency')
@@ -13,8 +13,8 @@ export class Constituency extends AbstractClass implements ConstituencyObj {
   })
   constituencyName: string;
 
-  @ManyToOne(() => District, (district) => district.constituencies)
-  district: District;
+  @ManyToOne(() => Province, (province) => province.constituencies)
+  province: Province;
 
   @OneToMany(() => Ward, (ward) => ward.constituency)
   wards: Ward[];
