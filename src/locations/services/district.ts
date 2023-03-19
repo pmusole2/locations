@@ -22,7 +22,7 @@ export class DistrictService {
     return this._districtRepo
       .createQueryBuilder('district')
       .leftJoinAndSelect('district.province', 'province')
-      .leftJoinAndSelect('district.constituencies', 'constituencies')
+      .leftJoinAndSelect('province.constituencies', 'constituencies')
       .leftJoinAndSelect('constituencies.wards', 'wards')
       .getMany();
   }
@@ -32,7 +32,7 @@ export class DistrictService {
       const district = await this._districtRepo
         .createQueryBuilder('district')
         .leftJoinAndSelect('district.province', 'province')
-        .leftJoinAndSelect('district.constituencies', 'constituencies')
+        .leftJoinAndSelect('province.constituencies', 'constituencies')
         .leftJoinAndSelect('constituencies.wards', 'wards')
         .where('district.id = :id', { id })
         .getOne();
