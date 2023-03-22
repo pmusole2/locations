@@ -22,7 +22,8 @@ export class WardService {
     return this._wardRepo
       .createQueryBuilder('ward')
       .leftJoinAndSelect('ward.constituency', 'constituency')
-      .leftJoinAndSelect('district.province', 'province')
+      .leftJoinAndSelect('constituency.province', 'province')
+      .leftJoinAndSelect('province.districts', 'districts')
       .getMany();
   }
 
@@ -31,7 +32,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('ward.id = :id', { id })
         .getOne();
 
@@ -49,7 +51,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('ward.wardName LIKE :name', { name: `%${name}%` })
         .getOne();
 
@@ -68,7 +71,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('constituency.id = :id', { id })
         .getMany();
 
@@ -86,7 +90,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('constituency.constituencyName LIKE :name', {
           name: `%${name}%`,
         })
@@ -102,51 +107,54 @@ export class WardService {
     }
   }
 
-  async getWardByDistrictId(id: number): Promise<Ward[]> {
-    try {
-      const ward = await this._wardRepo
-        .createQueryBuilder('ward')
-        .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
-        .where('district.id = :id', { id })
-        .getMany();
+  // async getWardByDistrictId(id: number): Promise<Ward[]> {
+  //   try {
+  //     const ward = await this._wardRepo
+  //       .createQueryBuilder('ward')
+  //       .leftJoinAndSelect('ward.constituency', 'constituency')
+  //       .leftJoinAndSelect('constituency.province', 'province')
+  //       .leftJoinAndSelect('province.districts', 'districts')
 
-      if (!ward) throw new NotFoundException(`Ward with id ${id} not found`);
+  //       .getMany();
 
-      return ward;
-    } catch (error) {
-      this._logger.error(error);
-      throw error;
-    }
-  }
+  //     if (!ward) throw new NotFoundException(`Ward with id ${id} not found`);
 
-  async getWardByDistrictName(name: string): Promise<Ward[]> {
-    try {
-      const ward = await this._wardRepo
-        .createQueryBuilder('ward')
-        .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
-        .where('district.districtName LIKE :name', {
-          name: `%${name}%`,
-        })
-        .getMany();
+  //     return ward;
+  //   } catch (error) {
+  //     this._logger.error(error);
+  //     throw error;
+  //   }
+  // }
 
-      if (!ward)
-        throw new NotFoundException(`Ward with name ${name} not found`);
+  // async getWardByDistrictName(name: string): Promise<Ward[]> {
+  //   try {
+  //     const ward = await this._wardRepo
+  //       .createQueryBuilder('ward')
+  //       .leftJoinAndSelect('ward.constituency', 'constituency')
+  //       .leftJoinAndSelect('constituency.province', 'province')
+  //       .leftJoinAndSelect('province.districts', 'districts')
+  //       .where('district.districtName LIKE :name', {
+  //         name: `%${name}%`,
+  //       })
+  //       .getMany();
 
-      return ward;
-    } catch (error) {
-      this._logger.error(error);
-      throw error;
-    }
-  }
+  //     if (!ward)
+  //       throw new NotFoundException(`Ward with name ${name} not found`);
+
+  //     return ward;
+  //   } catch (error) {
+  //     this._logger.error(error);
+  //     throw error;
+  //   }
+  // }
 
   async getWardByProvinceId(id: number): Promise<Ward[]> {
     try {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('province.id = :id', { id })
         .getMany();
 
@@ -164,7 +172,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
-        .leftJoinAndSelect('district.province', 'province')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('province.provinceName LIKE :name', {
           name: `%${name}%`,
         })
@@ -186,6 +195,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('constituency.id = :id', { id: data.constituency.id })
         .andWhere('ward.wardName = :name', { name: data.wardName })
         .getOne();
@@ -219,6 +230,8 @@ export class WardService {
       const ward = await this._wardRepo
         .createQueryBuilder('ward')
         .leftJoinAndSelect('ward.constituency', 'constituency')
+        .leftJoinAndSelect('constituency.province', 'province')
+        .leftJoinAndSelect('province.districts', 'districts')
         .where('ward.id = :id', { id })
         .getOne();
 

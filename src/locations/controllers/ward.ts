@@ -96,41 +96,41 @@ export class WardController {
     return this._wardService.getWardByConstituencyName(name);
   }
 
-  @Get('district/:id')
-  @ApiParam({ name: 'id', type: 'number' })
-  @ApiResponse({
-    status: 200,
-    description: 'Get wards by district id',
-    type: WardObj,
-    isArray: true,
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Wards not found',
-  })
-  async getWardsByDistrictId(
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<WardObj[]> {
-    return this._wardService.getWardByDistrictId(id);
-  }
+  // @Get('district/:id')
+  // @ApiParam({ name: 'id', type: 'number' })
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'Get wards by district id',
+  //   type: WardObj,
+  //   isArray: true,
+  // })
+  // @ApiResponse({
+  //   status: 404,
+  //   description: 'Wards not found',
+  // })
+  // async getWardsByDistrictId(
+  //   @Param('id', ParseIntPipe) id: number,
+  // ): Promise<WardObj[]> {
+  //   return this._wardService.getWardByDistrictId(id);
+  // }
 
-  @Get('district/name/:name')
-  @ApiParam({ name: 'name', type: 'string' })
-  @ApiResponse({
-    status: 200,
-    description: 'Get wards by district name',
-    type: WardObj,
-    isArray: true,
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Wards not found',
-  })
-  async getWardsByDistrictName(
-    @Param('name') name: string,
-  ): Promise<WardObj[]> {
-    return this._wardService.getWardByDistrictName(name);
-  }
+  // @Get('district/name/:name')
+  // @ApiParam({ name: 'name', type: 'string' })
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'Get wards by district name',
+  //   type: WardObj,
+  //   isArray: true,
+  // })
+  // @ApiResponse({
+  //   status: 404,
+  //   description: 'Wards not found',
+  // })
+  // async getWardsByDistrictName(
+  //   @Param('name') name: string,
+  // ): Promise<WardObj[]> {
+  //   return this._wardService.getWardByDistrictName(name);
+  // }
 
   @Get('province/:id')
   @ApiParam({ name: 'id', type: 'number' })
